@@ -1,0 +1,6 @@
+{
+  "name": "FGA Advocacia",
+  "description": "Site institucional do escritório FGA Advocacia - Dr. Frederico Gomes Assunção. Atuação especializada em Direito Previdenciário e Servidor Público.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
