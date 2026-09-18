@@ -11,11 +11,13 @@ export const WHATSAPP_DEFAULT_LINK = `${WHATSAPP_BASE_URL}?text=${DEFAULT_WHATSA
 export const OAB_PLACEHOLDER = 'OAB/GO 78.318';
 
 export const NAV_LINKS = [
-  { label: 'Início', href: '#inicio' },
+  { label: 'Início', href: '/' },
+  { label: 'Previdenciário', href: '/direito-previdenciario' },
+  { label: 'Servidor Público', href: '/direito-publico' },
   { label: 'Sobre', href: '#sobre' },
-  { label: 'Apresente seu Caso', href: '#contato' },
   { label: 'Especialidades', href: '#areas' },
-  { label: 'Dúvidas Frequentes', href: '#duvidas' },
+  { label: 'Apresente seu Caso', href: '#contato' },
+  { label: 'Dúvidas', href: '#duvidas' },
 ];
 
 export const PREVIDENCIARIO_ITEMS: PracticeCardItem[] = [

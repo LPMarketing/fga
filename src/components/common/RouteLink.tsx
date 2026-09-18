@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from '../../utils/router';
 
 interface RouteLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   to: string;
@@ -14,6 +15,8 @@ export const RouteLink: React.FC<RouteLinkProps> = ({
   onClick,
   ...props
 }) => {
+  const { navigate } = useRouter();
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onClick) {
       onClick(e);
@@ -35,25 +38,7 @@ export const RouteLink: React.FC<RouteLinkProps> = ({
     }
 
     e.preventDefault();
-
-    if (to.startsWith('#')) {
-      if (window.location.pathname !== '/' && window.location.pathname !== '') {
-        window.history.pushState({}, '', '/' + to);
-        window.dispatchEvent(new PopStateEvent('popstate'));
-        setTimeout(() => {
-          const el = document.querySelector(to);
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      } else {
-        const el = document.querySelector(to);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }
-      return;
-    }
-
-    window.history.pushState({}, '', to);
-    window.dispatchEvent(new PopStateEvent('popstate'));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigate(to);
   };
 
   return (

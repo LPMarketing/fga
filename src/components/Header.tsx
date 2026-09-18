@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Logo } from './Logo';
 import { NAV_LINKS, WHATSAPP_DEFAULT_LINK } from '../data/content';
 import { Menu, X, MessageSquare, ChevronRight } from 'lucide-react';
+import { useRouter } from '../utils/router';
 
 interface HeaderProps {
   onOpenContact?: () => void;
@@ -10,6 +11,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { currentPath, navigate } = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,38 +28,12 @@ export const Header: React.FC<HeaderProps> = () => {
 
   const handleNavClick = (href: string) => {
     setMobileMenuOpen(false);
-
-    if (href.startsWith('#')) {
-      if (window.location.pathname !== '/' && window.location.pathname !== '') {
-        window.history.pushState({}, '', '/' + href);
-        window.dispatchEvent(new PopStateEvent('popstate'));
-        setTimeout(() => {
-          const element = document.querySelector(href);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 150);
-        return;
-      }
-
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      window.history.pushState({}, '', href);
-      window.dispatchEvent(new PopStateEvent('popstate'));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    navigate(href);
   };
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (window.location.pathname !== '/' && window.location.pathname !== '') {
-      window.history.pushState({}, '', '/');
-      window.dispatchEvent(new PopStateEvent('popstate'));
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigate('/');
   };
 
   return (
@@ -85,19 +61,37 @@ export const Header: React.FC<HeaderProps> = () => {
           {/* Desktop Navigation */}
           <nav
             id="desktop-nav"
-            className="hidden lg:flex items-center space-x-7 xl:space-x-8"
+            className="hidden lg:flex items-center space-x-6 xl:space-x-7"
             aria-label="Navegação Principal"
           >
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-xs uppercase tracking-[0.18em] font-medium text-[#F5F3EF]/80 hover:text-[#C79A52] transition-colors duration-200 relative py-1 group"
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#C79A52] transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive =
+                (link.href === '/' && currentPath === '/') ||
+                (link.href !== '/' && !link.href.startsWith('#') && currentPath === link.href);
+
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(link.href);
+                  }}
+                  className={`text-xs uppercase tracking-[0.16em] font-medium transition-colors duration-200 relative py-1 group ${
+                    isActive
+                      ? 'text-[#C79A52] font-semibold'
+                      : 'text-[#F5F3EF]/80 hover:text-[#C79A52]'
+                  }`}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute bottom-0 left-0 h-[1.5px] bg-[#C79A52] transition-all duration-300 ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+                </a>
+              );
+            })}
           </nav>
 
           {/* Header Action Button */}
