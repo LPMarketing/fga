@@ -8,7 +8,7 @@ export const DEFAULT_WHATSAPP_MSG = encodeURIComponent(
 );
 export const WHATSAPP_DEFAULT_LINK = `${WHATSAPP_BASE_URL}?text=${DEFAULT_WHATSAPP_MSG}`;
 
-export const OAB_PLACEHOLDER = 'OAB/UF XXXXX';
+export const OAB_PLACEHOLDER = 'OAB/GO 78.318';
 
 export const NAV_LINKS = [
   { label: 'Início', href: '#inicio' },

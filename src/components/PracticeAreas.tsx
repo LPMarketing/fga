@@ -15,7 +15,9 @@ import {
   ShieldCheck,
   ArrowUpRight,
   MessageSquare,
+  ArrowRight,
 } from 'lucide-react';
+import { RouteLink } from './common/RouteLink';
 
 export const PracticeAreas: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'all' | 'previdenciario' | 'servidor'>('all');
@@ -144,17 +146,26 @@ export const PracticeAreas: React.FC = () => {
                       INSS, mediante análise individual das condições e documentos de cada cliente.
                     </p>
                   </div>
-                  <a
-                    href={`${WHATSAPP_BASE_URL}?text=${encodeURIComponent(
-                      'Olá, Dr. Frederico. Gostaria de uma avaliação jurídica sobre Direito Previdenciário.'
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-sm bg-[#102842] hover:bg-[#183759] border border-[#C79A52]/40 text-[#D1A75B] text-xs uppercase tracking-wider font-semibold transition-all shrink-0 active:scale-95"
-                  >
-                    <MessageSquare className="w-3.5 h-3.5" />
-                    <span>Consultar Previdenciário</span>
-                  </a>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 shrink-0">
+                    <RouteLink
+                      to="/direito-previdenciario"
+                      className="inline-flex items-center gap-2 px-4 py-3 rounded-sm bg-[#061321] hover:bg-[#0B1D30] border border-[#C79A52]/40 text-[#C79A52] hover:text-[#D1A75B] text-xs uppercase tracking-wider font-semibold transition-all"
+                    >
+                      <span>Página Dedicada</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </RouteLink>
+                    <a
+                      href={`${WHATSAPP_BASE_URL}?text=${encodeURIComponent(
+                        'Olá, Dr. Frederico. Gostaria de uma avaliação jurídica sobre Direito Previdenciário.'
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-sm bg-[#102842] hover:bg-[#183759] border border-[#C79A52]/40 text-[#D1A75B] text-xs uppercase tracking-wider font-semibold transition-all shrink-0 active:scale-95"
+                    >
+                      <MessageSquare className="w-3.5 h-3.5" />
+                      <span>Consultar Previdenciário</span>
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -214,17 +225,26 @@ export const PracticeAreas: React.FC = () => {
                       aplicável.
                     </p>
                   </div>
-                  <a
-                    href={`${WHATSAPP_BASE_URL}?text=${encodeURIComponent(
-                      'Olá, Dr. Frederico. Gostaria de uma avaliação jurídica sobre questões de Servidor Público.'
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-sm bg-[#102842] hover:bg-[#183759] border border-[#C79A52]/40 text-[#D1A75B] text-xs uppercase tracking-wider font-semibold transition-all shrink-0 active:scale-95"
-                  >
-                    <MessageSquare className="w-3.5 h-3.5" />
-                    <span>Consultar Servidor Público</span>
-                  </a>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 shrink-0">
+                    <RouteLink
+                      to="/direito-publico"
+                      className="inline-flex items-center gap-2 px-4 py-3 rounded-sm bg-[#061321] hover:bg-[#0B1D30] border border-[#C79A52]/40 text-[#C79A52] hover:text-[#D1A75B] text-xs uppercase tracking-wider font-semibold transition-all"
+                    >
+                      <span>Página Dedicada</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </RouteLink>
+                    <a
+                      href={`${WHATSAPP_BASE_URL}?text=${encodeURIComponent(
+                        'Olá, Dr. Frederico. Gostaria de uma avaliação jurídica sobre questões de Servidor Público.'
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-sm bg-[#102842] hover:bg-[#183759] border border-[#C79A52]/40 text-[#D1A75B] text-xs uppercase tracking-wider font-semibold transition-all shrink-0 active:scale-95"
+                    >
+                      <MessageSquare className="w-3.5 h-3.5" />
+                      <span>Consultar Servidor Público</span>
+                    </a>
+                  </div>
                 </div>
               </div>
 

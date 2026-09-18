@@ -1,5 +1,5 @@
 import React from 'react';
-import { WHATSAPP_DEFAULT_LINK } from '../data/content';
+import { WHATSAPP_DEFAULT_LINK, OAB_PLACEHOLDER } from '../data/content';
 import { lawyerPortrait } from '../assets';
 import { MessageSquare, ArrowRight, ShieldCheck, Scale } from 'lucide-react';
 
@@ -124,7 +124,7 @@ export const Hero: React.FC = () => {
                       </p>
                     </div>
                     <div className="px-2.5 py-1 rounded bg-[#0B1D30] border border-[#C79A52]/30 text-[10px] sm:text-xs font-mono text-[#BAC7D5] whitespace-nowrap">
-                      OAB/UF XXXXX
+                      {OAB_PLACEHOLDER}
                     </div>
                   </div>
                 </div>

@@ -105,15 +105,10 @@ export const AboutLawyer: React.FC = () => {
 
             <div className="space-y-4 text-base sm:text-lg text-[#BAC7D5] font-light leading-relaxed">
               <p>
-                Dr. Frederico Gomes Assunção atua na advocacia com foco em{' '}
-                <strong className="text-[#F5F3EF] font-semibold">Direito Previdenciário</strong> e{' '}
-                <strong className="text-[#F5F3EF] font-semibold">questões jurídicas relacionadas a servidores públicos</strong>.
-                Seu atendimento é pautado pela análise individualizada de cada situação, comunicação clara
-                e busca pela solução jurídica adequada para cada demanda.
+                O <strong className="text-[#F5F3EF] font-semibold">Dr. Frederico Gomes Assunção</strong>, graduado em Direito pela <strong className="text-[#F5F3EF] font-medium">Universidade Federal de Goiás (UFG)</strong> e inscrito nos quadros da Ordem sob o <strong className="text-[#C79A52] font-mono font-medium">nº 78.318</strong>, atua na advocacia com foco em <strong className="text-[#F5F3EF] font-semibold">Direito Previdenciário</strong> e <strong className="text-[#F5F3EF] font-semibold">questões jurídicas relacionadas a servidores públicos</strong>. Seu atendimento é pautado pela análise individualizada de cada situação, comunicação clara e busca pela solução jurídica adequada para cada demanda.
               </p>
               <p>
-                Na FGA Advocacia, cada caso é tratado de maneira particular, considerando documentos,
-                histórico e circunstâncias específicas antes da definição das medidas jurídicas cabíveis.
+                Na FGA Advocacia, cada caso é tratado de maneira particular, considerando documentos, histórico funcional e circunstâncias específicas antes da definição da estratégia jurídica cabível.
               </p>
             </div>
 

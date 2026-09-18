@@ -2,6 +2,7 @@ import React from 'react';
 import { Logo } from './Logo';
 import { WHATSAPP_DISPLAY, WHATSAPP_DEFAULT_LINK, OAB_PLACEHOLDER } from '../data/content';
 import { MessageSquare, Shield, ArrowUp } from 'lucide-react';
+import { RouteLink } from './common/RouteLink';
 
 interface FooterProps {
   onOpenPrivacy: () => void;
@@ -12,13 +13,32 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    if (window.location.pathname !== '/' && window.location.pathname !== '') {
+      window.history.pushState({}, '', '/' + hash);
+      window.dispatchEvent(new PopStateEvent('popstate'));
+      setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 150);
+      return;
+    }
+    const el = document.querySelector(hash);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer id="main-footer" className="bg-[#040d16] text-[#F5F3EF] border-t border-[#102842] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-[#102842]">
           {/* Brand Column */}
           <div className="lg:col-span-5 space-y-4">
-            <Logo size="md" showSubtitle={true} />
+            <RouteLink to="/" className="inline-block hover:opacity-95 transition-opacity">
+              <Logo size="md" showSubtitle={true} />
+            </RouteLink>
 
             <div className="pt-3 space-y-2 text-xs sm:text-sm text-[#8E9CAE] font-light max-w-sm">
               <p>
@@ -39,29 +59,65 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
             </h4>
             <ul className="space-y-2 text-xs uppercase tracking-wider text-[#BAC7D5]">
               <li>
-                <a href="#inicio" className="hover:text-[#C79A52] transition-colors">
+                <a
+                  href="#inicio"
+                  onClick={(e) => handleNavClick(e, '#inicio')}
+                  className="hover:text-[#C79A52] transition-colors"
+                >
                   Início
                 </a>
               </li>
               <li>
-                <a href="#sobre" className="hover:text-[#C79A52] transition-colors">
+                <a
+                  href="#sobre"
+                  onClick={(e) => handleNavClick(e, '#sobre')}
+                  className="hover:text-[#C79A52] transition-colors"
+                >
                   Sobre o Advogado
                 </a>
               </li>
               <li>
-                <a href="#contato" className="hover:text-[#C79A52] transition-colors">
+                <a
+                  href="#contato"
+                  onClick={(e) => handleNavClick(e, '#contato')}
+                  className="hover:text-[#C79A52] transition-colors"
+                >
                   Apresente seu Caso
                 </a>
               </li>
               <li>
-                <a href="#areas" className="hover:text-[#C79A52] transition-colors">
+                <a
+                  href="#areas"
+                  onClick={(e) => handleNavClick(e, '#areas')}
+                  className="hover:text-[#C79A52] transition-colors"
+                >
                   Especialidades
                 </a>
               </li>
               <li>
-                <a href="#duvidas" className="hover:text-[#C79A52] transition-colors">
+                <a
+                  href="#duvidas"
+                  onClick={(e) => handleNavClick(e, '#duvidas')}
+                  className="hover:text-[#C79A52] transition-colors"
+                >
                   Dúvidas Frequentes
                 </a>
+              </li>
+              <li className="pt-2 border-t border-[#102842]">
+                <RouteLink
+                  to="/direito-previdenciario"
+                  className="text-[#C79A52] hover:text-[#D1A75B] transition-colors"
+                >
+                  Direito Previdenciário
+                </RouteLink>
+              </li>
+              <li>
+                <RouteLink
+                  to="/direito-publico"
+                  className="text-[#C79A52] hover:text-[#D1A75B] transition-colors"
+                >
+                  Servidor Público
+                </RouteLink>
               </li>
             </ul>
           </div>

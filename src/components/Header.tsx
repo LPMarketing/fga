@@ -26,10 +26,38 @@ export const Header: React.FC<HeaderProps> = () => {
 
   const handleNavClick = (href: string) => {
     setMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+
+    if (href.startsWith('#')) {
+      if (window.location.pathname !== '/' && window.location.pathname !== '') {
+        window.history.pushState({}, '', '/' + href);
+        window.dispatchEvent(new PopStateEvent('popstate'));
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 150);
+        return;
+      }
+
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      window.history.pushState({}, '', href);
+      window.dispatchEvent(new PopStateEvent('popstate'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (window.location.pathname !== '/' && window.location.pathname !== '') {
+      window.history.pushState({}, '', '/');
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -45,7 +73,8 @@ export const Header: React.FC<HeaderProps> = () => {
         <div className="flex items-center justify-between">
           {/* Logo Area */}
           <a
-            href="#inicio"
+            href="/"
+            onClick={handleLogoClick}
             id="header-logo-link"
             className="flex items-center group transition-transform duration-200 hover:opacity-95"
             aria-label="FGA Advocacia - Início"
