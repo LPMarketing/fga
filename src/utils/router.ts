@@ -1,22 +1,38 @@
 import { useState, useEffect } from 'react';
 
-export function normalizePath(path: string): string {
-  // Remove trailing slashes (except root) and lowercase
-  if (!path || path === '/') return '/';
-  const clean = path.replace(/\/+$/, '');
-  return clean || '/';
+export function resolveCurrentRoute(): string {
+  if (typeof window === 'undefined') return '/';
+
+  const pathname = window.location.pathname.replace(/\/+$/, '').toLowerCase();
+  if (pathname.includes('previdenciario')) return '/direito-previdenciario';
+  if (pathname.includes('publico') || pathname.includes('servidor')) return '/direito-publico';
+
+  const hash = window.location.hash.toLowerCase();
+  if (hash.includes('previdenciario')) return '/direito-previdenciario';
+  if (hash.includes('publico') || hash.includes('servidor')) return '/direito-publico';
+
+  const search = window.location.search.toLowerCase();
+  if (search.includes('previdenciario')) return '/direito-previdenciario';
+  if (search.includes('publico') || search.includes('servidor')) return '/direito-publico';
+
+  return '/';
 }
 
 export function useRouter() {
-  const [currentPath, setCurrentPath] = useState(() => normalizePath(window.location.pathname));
+  const [currentPath, setCurrentPath] = useState(() => resolveCurrentRoute());
 
   useEffect(() => {
-    const handlePopState = () => {
-      setCurrentPath(normalizePath(window.location.pathname));
+    const handleNavigationChange = () => {
+      setCurrentPath(resolveCurrentRoute());
     };
 
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    window.addEventListener('popstate', handleNavigationChange);
+    window.addEventListener('hashchange', handleNavigationChange);
+
+    return () => {
+      window.removeEventListener('popstate', handleNavigationChange);
+      window.removeEventListener('hashchange', handleNavigationChange);
+    };
   }, []);
 
   const navigate = (to: string) => {
@@ -25,7 +41,7 @@ export function useRouter() {
       return;
     }
 
-    if (to.startsWith('#')) {
+    if (to.startsWith('#') && !to.includes('previdenciario') && !to.includes('publico')) {
       if (currentPath !== '/') {
         window.history.pushState({}, '', '/' + to);
         setCurrentPath('/');
@@ -41,23 +57,16 @@ export function useRouter() {
     }
 
     const [path, hash] = to.split('#');
-    const normalized = normalizePath(path);
 
-    if (normalized !== currentPath) {
-      window.history.pushState({}, '', to);
-      setCurrentPath(normalized);
-      if (hash) {
-        setTimeout(() => {
-          const el = document.getElementById(hash);
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-          else window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 100);
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    } else if (hash) {
-      const el = document.getElementById(hash);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    window.history.pushState({}, '', to);
+    setCurrentPath(resolveCurrentRoute());
+
+    if (hash) {
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
