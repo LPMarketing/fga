@@ -10,7 +10,9 @@ export const FAQSection: React.FC = () => {
   };
 
   return (
-    <section id="duvidas" className="py-24 lg:py-32 bg-[#081828] text-[#F5F3EF] relative">
+    <section id="duvidas" data-section="duvidas-frequentes" className="py-24 lg:py-32 bg-[#081828] text-[#F5F3EF] relative">
+      <div id="duvidas-frequentes" className="sr-only" aria-hidden="true" />
+      <div id="faq" className="sr-only" aria-hidden="true" />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center space-y-4 mb-16">

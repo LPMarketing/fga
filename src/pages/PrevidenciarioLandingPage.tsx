@@ -154,7 +154,7 @@ export const PrevidenciarioLandingPage: React.FC = () => {
 
       {/* SEÇÃO 05 — FORMULÁRIO RÁPIDO & CTA FINAL */}
       <LandingContactCTA
-        id="contato"
+        id="contato-previdenciario"
         defaultAssunto="Direito Previdenciário"
         ctaBadge="FALE COM A FGA ADVOCACIA"
         ctaTitle="Precisa de orientação sobre uma questão previdenciária?"

@@ -136,20 +136,34 @@ export const Header: React.FC<HeaderProps> = () => {
         >
           <div className="px-6 py-6 space-y-4">
             <div className="space-y-1 divide-y divide-[#102842]/60">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }}
-                  className="flex items-center justify-between py-3.5 text-sm uppercase tracking-[0.15em] font-medium text-[#F5F3EF] hover:text-[#C79A52] transition-colors"
-                >
-                  <span>{link.label}</span>
-                  <ChevronRight className="w-4 h-4 text-[#C79A52]/60" />
-                </a>
-              ))}
+              {NAV_LINKS.map((link) => {
+                const isMobileActive =
+                  (link.href === '/' && currentPath === '/') ||
+                  (link.href !== '/' && !link.href.startsWith('#') && currentPath === link.href);
+
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(link.href);
+                    }}
+                    className={`flex items-center justify-between py-3.5 text-sm uppercase tracking-[0.15em] font-medium transition-colors ${
+                      isMobileActive
+                        ? 'text-[#C79A52] font-semibold'
+                        : 'text-[#F5F3EF] hover:text-[#C79A52]'
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    <ChevronRight
+                      className={`w-4 h-4 ${
+                        isMobileActive ? 'text-[#C79A52]' : 'text-[#C79A52]/60'
+                      }`}
+                    />
+                  </a>
+                );
+              })}
             </div>
 
             <div className="pt-4 border-t border-[#102842]">

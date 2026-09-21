@@ -3,31 +3,22 @@ import { Logo } from './Logo';
 import { WHATSAPP_DISPLAY, WHATSAPP_DEFAULT_LINK, OAB_PLACEHOLDER } from '../data/content';
 import { MessageSquare, Shield, ArrowUp } from 'lucide-react';
 import { RouteLink } from './common/RouteLink';
+import { useRouter } from '../utils/router';
 
 interface FooterProps {
   onOpenPrivacy: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
+  const { navigate } = useRouter();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
-    if (window.location.pathname !== '/' && window.location.pathname !== '') {
-      window.history.pushState({}, '', '/' + hash);
-      window.dispatchEvent(new PopStateEvent('popstate'));
-      setTimeout(() => {
-        const el = document.querySelector(hash);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 150);
-      return;
-    }
-    const el = document.querySelector(hash);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    navigate(target);
   };
 
   return (

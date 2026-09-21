@@ -152,7 +152,7 @@ export const PublicoLandingPage: React.FC = () => {
 
       {/* SEÇÃO 05 — FORMULÁRIO RÁPIDO & CTA FINAL */}
       <LandingContactCTA
-        id="contato"
+        id="contato-servidor"
         defaultAssunto="Direito Público / Servidor Público"
         ctaBadge="FGA ADVOCACIA"
         ctaTitle="Tem uma questão relacionada ao serviço público?"

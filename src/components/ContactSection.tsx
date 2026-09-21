@@ -41,7 +41,8 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contato" className="py-24 lg:py-32 bg-[#061321] text-[#F5F3EF] relative overflow-hidden">
+    <section id="contato" data-section="apresente-seu-caso" className="py-24 lg:py-32 bg-[#061321] text-[#F5F3EF] relative overflow-hidden">
+      <div id="apresente-seu-caso" className="sr-only" aria-hidden="true" />
       {/* Subtle ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#102842]/25 rounded-full blur-3xl pointer-events-none" />
 

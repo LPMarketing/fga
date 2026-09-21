@@ -70,7 +70,8 @@ export const PracticeAreas: React.FC = () => {
   };
 
   return (
-    <section id="areas" className="py-24 lg:py-32 bg-[#061321] text-[#F5F3EF] relative">
+    <section id="areas" data-section="especialidades" className="py-24 lg:py-32 bg-[#061321] text-[#F5F3EF] relative">
+      <div id="especialidades" className="sr-only" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">

@@ -2,8 +2,11 @@ import React from 'react';
 import { WHATSAPP_DEFAULT_LINK, OAB_PLACEHOLDER } from '../data/content';
 import { lawyerPortrait } from '../assets';
 import { MessageSquare, ArrowRight, ShieldCheck, Scale } from 'lucide-react';
+import { useRouter } from '../utils/router';
 
 export const Hero: React.FC = () => {
+  const { navigate } = useRouter();
+
   return (
     <section
       id="inicio"
@@ -66,6 +69,10 @@ export const Hero: React.FC = () => {
               <a
                 id="hero-explore-areas-btn"
                 href="#areas"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('#areas');
+                }}
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-sm border border-[#C79A52]/50 text-[#F5F3EF] text-sm uppercase tracking-[0.15em] font-medium bg-[#0B1D30]/40 backdrop-blur-sm transition-all duration-300 hover:border-[#C79A52] hover:bg-[#0B1D30] hover:text-[#D1A75B]"
               >
                 <span>Conheça nossa atuação</span>

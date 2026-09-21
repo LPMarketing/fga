@@ -15,9 +15,9 @@ export const NAV_LINKS = [
   { label: 'Previdenciário', href: '/direito-previdenciario' },
   { label: 'Servidor Público', href: '/direito-publico' },
   { label: 'Sobre', href: '#sobre' },
-  { label: 'Especialidades', href: '#areas' },
-  { label: 'Apresente seu Caso', href: '#contato' },
-  { label: 'Dúvidas', href: '#duvidas' },
+  { label: 'Especialidades', href: '#especialidades' },
+  { label: 'Apresente seu Caso', href: '#apresente-seu-caso' },
+  { label: 'Dúvidas Frequentes', href: '#duvidas' },
 ];
 
 export const PREVIDENCIARIO_ITEMS: PracticeCardItem[] = [
