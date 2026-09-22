@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { WHATSAPP_BASE_URL, WHATSAPP_DISPLAY } from '../../data/content';
 import { Send, MessageSquare, ShieldCheck, Lock, CheckCircle2 } from 'lucide-react';
+import { markAsConverted } from '../../utils/qualificationStorage';
 
 export interface LandingContactCTAProps {
   id?: string;
@@ -31,6 +32,8 @@ export const LandingContactCTA: React.FC<LandingContactCTAProps> = ({
       return;
     }
 
+    markAsConverted();
+
     const formattedMessage = `Olá, meu nome é ${nome.trim()}.
 
 Gostaria de atendimento sobre: ${assunto}.
@@ -48,7 +51,7 @@ ${telefone.trim()}`;
   const directWhatsappUrl = `${WHATSAPP_BASE_URL}?text=${encodeURIComponent(directWhatsappMessage)}`;
 
   return (
-    <section id={id} className="py-24 lg:py-32 bg-[#061321] text-[#F5F3EF] relative overflow-hidden">
+    <section id={id} className="py-10 sm:py-14 lg:py-18 bg-[#061321] text-[#F5F3EF] relative overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#102842]/25 rounded-full blur-3xl pointer-events-none" />
 

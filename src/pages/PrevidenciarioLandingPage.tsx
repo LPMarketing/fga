@@ -92,19 +92,25 @@ export const PrevidenciarioLandingPage: React.FC = () => {
       {/* SEÇÃO 01 — HERO */}
       <LandingHero
         badge="FGA ADVOCACIA • DIREITO PREVIDENCIÁRIO"
-        titlePrefix="Seus"
-        titleHighlight="direitos previdenciários"
-        titleSuffix="merecem uma análise cuidadosa."
-        description="Atuação jurídica em questões relacionadas ao INSS, aposentadorias, benefícios e planejamento previdenciário, com análise individualizada de cada situação."
+        titlePrefix="Teve o benefício negado ou busca planejar sua"
+        titleHighlight="aposentadoria no INSS?"
+        titleSuffix=""
+        description="Atuação jurídica estratégica para destravar benefícios negados, calcular o melhor momento de aposentadoria e corrigir pendências no INSS com segurança técnica."
         primaryCtaText="Falar com um advogado"
         primaryCtaLink={whatsappHeroUrl}
+        formCtaText="Preencher Formulário"
+        formCtaTarget="#contato-previdenciario"
         secondaryCtaText="Entenda nossa atuação"
         secondaryCtaTarget="#como-podemos-auxiliar"
         differentials={[
-          'Atendimento individualizado',
-          'Análise documental',
-          'Orientação clara',
+          'Análise de tempo e regras de transição',
+          'Atuação em benefícios negados pelo INSS',
+          'Atendimento direto e individualizado',
         ]}
+        mobileBadge="DIREITO PREVIDENCIÁRIO"
+        mobileHeadline="Precisa destravar seu benefício ou planejar sua aposentadoria no INSS?"
+        mobileHighlight="aposentadoria no INSS"
+        mobileSubtext="Análise técnica para benefícios negados, aposentadorias e planejamento previdenciário."
       />
 
       {/* SEÇÃO 02 — COMO PODEMOS AUXILIAR (Fundo Off-white) */}

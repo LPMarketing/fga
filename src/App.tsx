@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+import { ScrollToTopButton } from './components/ScrollToTopButton';
+import { QualificationModalManager } from './components/QualificationModalManager';
 import { PrivacyModal } from './components/PrivacyModal';
 import { HomePage } from './pages/HomePage';
 import { PrevidenciarioLandingPage } from './pages/PrevidenciarioLandingPage';
@@ -36,8 +38,14 @@ export default function App() {
       {/* Semantic Footer */}
       <Footer onOpenPrivacy={() => setPrivacyModalOpen(true)} />
 
+      {/* Scroll to Top Floating Button */}
+      <ScrollToTopButton />
+
       {/* Floating WhatsApp Widget */}
       <FloatingWhatsApp />
+
+      {/* Lead Qualification & Exit Intent Modals Manager */}
+      <QualificationModalManager />
 
       {/* LGPD Privacy Policy Modal */}
       <PrivacyModal

@@ -1,4 +1,4 @@
-import { FAQItem, DifferentialItem, ProcessStep, PracticeCardItem } from '../types';
+import { FAQItem, DifferentialItem, ProcessStep, PracticeCardItem, NavItem } from '../types';
 
 export const WHATSAPP_RAW = '5562992585232';
 export const WHATSAPP_DISPLAY = '(62) 99258-5232';
@@ -10,14 +10,14 @@ export const WHATSAPP_DEFAULT_LINK = `${WHATSAPP_BASE_URL}?text=${DEFAULT_WHATSA
 
 export const OAB_PLACEHOLDER = 'OAB/GO 78.318';
 
-export const NAV_LINKS = [
+export const NAV_LINKS: NavItem[] = [
   { label: 'Início', href: '/' },
   { label: 'Previdenciário', href: '/direito-previdenciario' },
   { label: 'Servidor Público', href: '/direito-publico' },
   { label: 'Sobre', href: '#sobre' },
   { label: 'Especialidades', href: '#especialidades' },
-  { label: 'Apresente seu Caso', href: '#apresente-seu-caso' },
-  { label: 'Dúvidas Frequentes', href: '#duvidas' },
+  { label: 'Apresente seu Caso', shortLabel: 'Apresente seu Caso', href: '#apresente-seu-caso' },
+  { label: 'Dúvidas Frequentes', shortLabel: 'Dúvidas', href: '#duvidas' },
 ];
 
 export const PREVIDENCIARIO_ITEMS: PracticeCardItem[] = [

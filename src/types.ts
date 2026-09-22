@@ -1,5 +1,6 @@
 export interface NavItem {
   label: string;
+  shortLabel?: string;
   href: string;
 }
 

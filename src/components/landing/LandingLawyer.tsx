@@ -17,7 +17,7 @@ export const LandingLawyer: React.FC<LandingLawyerProps> = ({
   differentials,
 }) => {
   return (
-    <section id={id} className="py-24 lg:py-32 bg-[#081828] text-[#F5F3EF] relative overflow-hidden">
+    <section id={id} className="py-10 sm:py-14 lg:py-18 bg-[#081828] text-[#F5F3EF] relative overflow-hidden">
       {/* Background ambient accents */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#102842]/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C79A52]/5 rounded-full blur-3xl pointer-events-none" />

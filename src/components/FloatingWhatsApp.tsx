@@ -6,7 +6,7 @@ export const FloatingWhatsApp: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center gap-3">
       {/* Tooltip on hover or desktop */}
       <div
         className={`hidden sm:flex items-center gap-2 px-3.5 py-2 rounded bg-[#061321]/95 text-[#F5F3EF] border border-[#C79A52]/50 text-xs font-medium shadow-2xl backdrop-blur-md transition-all duration-300 ${
@@ -28,14 +28,14 @@ export const FloatingWhatsApp: React.FC = () => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         aria-label="Fale conosco pelo WhatsApp"
-        className="relative group w-14 h-14 rounded-full bg-gradient-to-tr from-[#128C7E] to-[#25D366] text-white flex items-center justify-center shadow-2xl shadow-emerald-950/60 hover:scale-105 active:scale-95 transition-all duration-300 border-2 border-white/20"
+        className="relative group w-[52px] h-[52px] sm:w-14 sm:h-14 rounded-full bg-gradient-to-tr from-[#128C7E] to-[#25D366] text-white flex items-center justify-center shadow-2xl shadow-emerald-950/60 hover:scale-105 active:scale-95 transition-all duration-300 border-2 border-white/20"
       >
         {/* Radar ping animation */}
         <span className="absolute -inset-1 rounded-full bg-[#25D366]/30 animate-ping pointer-events-none opacity-75" />
 
         {/* WhatsApp Icon */}
         <svg
-          className="w-7 h-7 fill-current relative z-10"
+          className="w-6 h-6 sm:w-7 sm:h-7 fill-current relative z-10"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >

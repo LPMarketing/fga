@@ -5,7 +5,7 @@ export const Introduction: React.FC = () => {
   return (
     <section
       id="institucional"
-      className="py-20 lg:py-28 bg-[#F5F3EF] text-[#061321] relative overflow-hidden"
+      className="py-10 sm:py-14 lg:py-16 bg-[#F5F3EF] text-[#061321] relative overflow-hidden"
     >
       {/* Subtle top subtle separator */}
       <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#C79A52] to-transparent" />

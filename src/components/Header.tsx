@@ -41,27 +41,34 @@ export const Header: React.FC<HeaderProps> = () => {
       id="main-header"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#061321]/95 backdrop-blur-md shadow-lg shadow-black/30 border-b border-[#C79A52]/20 py-3.5'
-          : 'bg-gradient-to-b from-[#040d16]/90 via-[#061321]/60 to-transparent py-5 sm:py-6'
+          ? 'bg-[#061321]/95 backdrop-blur-md shadow-lg shadow-black/30 border-b border-[#C79A52]/20 py-2'
+          : 'bg-gradient-to-b from-[#040d16]/95 via-[#061321]/80 to-transparent py-2.5 sm:py-3.5 lg:py-3.5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo Area */}
-          <a
-            href="/"
-            onClick={handleLogoClick}
-            id="header-logo-link"
-            className="flex items-center group transition-transform duration-200 hover:opacity-95"
-            aria-label="FGA Advocacia - Início"
-          >
-            <Logo size={isScrolled ? 'sm' : 'md'} showSubtitle={!isScrolled} />
-          </a>
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 xl:px-8 box-border">
+        {/* Desktop Header Layout: 3 Independent Columns [BRAND] [NAV] [CTA] via CSS Grid */}
+        <div className="hidden lg:grid grid-cols-[minmax(180px,260px)_minmax(0,1fr)_auto] items-center gap-3 xl:gap-5 2xl:gap-7 w-full">
+          {/* Column 1: Brand / Logo Area */}
+          <div className="min-w-0 max-w-[260px] flex items-center">
+            <a
+              href="/"
+              onClick={handleLogoClick}
+              id="header-logo-link"
+              className="flex items-center group transition-transform duration-200 hover:opacity-95"
+              aria-label="FGA Advocacia - Início"
+            >
+              <Logo
+                size="md"
+                compactDesktop={true}
+                showSubtitle={!isScrolled}
+              />
+            </a>
+          </div>
 
-          {/* Desktop Navigation */}
+          {/* Column 2: Flexible Center/Right Navigation (Min-width 0, never overlaps with CTA column) */}
           <nav
             id="desktop-nav"
-            className="hidden lg:flex items-center space-x-6 xl:space-x-7"
+            className="flex items-center justify-end gap-2.5 lg:gap-3 xl:gap-4 2xl:gap-6 min-w-0 px-2 overflow-visible"
             aria-label="Navegação Principal"
           >
             {NAV_LINKS.map((link) => {
@@ -77,13 +84,21 @@ export const Header: React.FC<HeaderProps> = () => {
                     e.preventDefault();
                     handleNavClick(link.href);
                   }}
-                  className={`text-xs uppercase tracking-[0.16em] font-medium transition-colors duration-200 relative py-1 group ${
+                  className={`text-[10px] xl:text-[11px] 2xl:text-xs uppercase tracking-[0.08em] xl:tracking-[0.1em] 2xl:tracking-[0.14em] font-medium transition-colors duration-200 relative py-1 whitespace-nowrap group ${
                     isActive
                       ? 'text-[#C79A52] font-semibold'
-                      : 'text-[#F5F3EF]/80 hover:text-[#C79A52]'
+                      : 'text-[#F5F3EF]/85 hover:text-[#C79A52]'
                   }`}
                 >
-                  {link.label}
+                  {/* Adaptive label: show short label on 1024px-1279px, full label on >=1280px */}
+                  {link.shortLabel && link.shortLabel !== link.label ? (
+                    <>
+                      <span className="xl:hidden">{link.shortLabel}</span>
+                      <span className="hidden xl:inline">{link.label}</span>
+                    </>
+                  ) : (
+                    <span>{link.label}</span>
+                  )}
                   <span
                     className={`absolute bottom-0 left-0 h-[1.5px] bg-[#C79A52] transition-all duration-300 ${
                       isActive ? 'w-full' : 'w-0 group-hover:w-full'
@@ -94,22 +109,47 @@ export const Header: React.FC<HeaderProps> = () => {
             })}
           </nav>
 
-          {/* Header Action Button */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Column 3: Dedicated Action CTA Button in its Own Independent Column */}
+          <div className="flex items-center justify-end flex-shrink-0 min-w-[170px] xl:min-w-[190px] 2xl:min-w-[215px]">
             <a
               id="header-cta-button"
               href={WHATSAPP_DEFAULT_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-gradient-to-r from-[#C79A52] via-[#D1A75B] to-[#B98A43] text-[#061321] text-xs uppercase tracking-[0.14em] font-semibold transition-all duration-300 hover:brightness-110 hover:shadow-lg hover:shadow-[#C79A52]/20 active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-1.5 xl:gap-2 px-3 xl:px-4 py-2 rounded-sm bg-gradient-to-r from-[#C79A52] via-[#D1A75B] to-[#B98A43] text-[#061321] text-[10px] xl:text-[11px] 2xl:text-xs uppercase tracking-[0.1em] font-bold shadow-md shadow-[#C79A52]/15 transition-all duration-300 hover:brightness-110 hover:shadow-lg hover:shadow-[#C79A52]/25 active:scale-[0.98] whitespace-nowrap flex-shrink-0"
             >
-              <MessageSquare className="w-3.5 h-3.5" />
+              <MessageSquare className="w-3 h-3 xl:w-3.5 xl:h-3.5 flex-shrink-0" />
               <span>Falar com um advogado</span>
             </a>
           </div>
+        </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex lg:hidden items-center gap-2">
+        {/* Mobile & Tablet Header Layout (< 1024px) */}
+        <div className="flex lg:hidden items-center justify-between">
+          {/* Mobile Logo */}
+          <a
+            href="/"
+            onClick={handleLogoClick}
+            id="header-logo-link-mobile"
+            className="flex items-center flex-shrink-0 group transition-transform duration-200 hover:opacity-95"
+            aria-label="FGA Advocacia - Início"
+          >
+            <Logo size="sm" showSubtitle={!isScrolled} />
+          </a>
+
+          {/* Mobile Menu & Quick CTA */}
+          <div className="flex items-center gap-2">
+            <a
+              id="mobile-quick-cta"
+              href={WHATSAPP_DEFAULT_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-[#C79A52] text-[#061321] text-[10.5px] uppercase tracking-wider font-bold shadow-sm"
+            >
+              <MessageSquare className="w-3.5 h-3.5" />
+              <span>Advogado</span>
+            </a>
+
             <button
               id="mobile-menu-toggle"
               type="button"

@@ -1,34 +1,121 @@
 import React from 'react';
 import { WHATSAPP_DEFAULT_LINK, OAB_PLACEHOLDER } from '../data/content';
 import { lawyerPortrait } from '../assets';
-import { MessageSquare, ArrowRight, ShieldCheck, Scale } from 'lucide-react';
+import { MessageSquare, ArrowRight, ShieldCheck, Scale, FileText } from 'lucide-react';
 import { useRouter } from '../utils/router';
 
 export const Hero: React.FC = () => {
   const { navigate } = useRouter();
 
+  const handleScrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const el = document.getElementById('contato');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('#contato');
+    }
+  };
+
   return (
     <section
       id="inicio"
-      className="relative min-h-[92vh] lg:min-h-screen pt-28 pb-16 lg:pt-36 lg:pb-24 flex items-center bg-[#061321] overflow-hidden"
+      className="relative min-h-[75svh] md:min-h-[80svh] lg:min-h-[85svh] xl:min-h-[88svh] pt-16 pb-8 sm:pt-20 sm:pb-12 lg:pt-28 lg:pb-16 xl:pt-32 xl:pb-20 flex items-end lg:items-center bg-[#061321] overflow-hidden"
     >
-      {/* Ambient background lighting & grid */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#183759]/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-[#C79A52]/8 rounded-full blur-[100px] pointer-events-none" />
+      {/* ========================================================
+          MOBILE HERO BACKGROUND PHOTO & SOPHISTICATED OVERLAY
+          Exclusively active on screens below lg (<1024px)
+          Desktop continues using original side-by-side composition
+         ======================================================== */}
+      <div className="lg:hidden absolute inset-0 z-0">
+        <img
+          src="/assets/hero_mobile_home.png"
+          alt="Dr. Frederico Gomes Assunção — FGA Advocacia"
+          className="w-full h-full object-cover object-[center_20%] sm:object-[center_15%]"
+          loading="eager"
+          referrerPolicy="no-referrer"
+        />
+        {/* Editorial Multi-Stop Vignette & Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#061321] via-[#061321]/90 via-55% via-[#081828]/50 to-[#040d16]/75" />
+        <div className="absolute inset-0 bg-[#061321]/30 backdrop-brightness-[0.88]" />
+      </div>
 
-      {/* Decorative architectural borders */}
+      {/* Ambient background lighting & grid for desktop */}
+      <div className="hidden lg:block absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
+      <div className="hidden lg:block absolute top-1/4 left-0 w-96 h-96 bg-[#183759]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="hidden lg:block absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-[#C79A52]/8 rounded-full blur-[100px] pointer-events-none" />
+
+      {/* Decorative architectural borders (Desktop only) */}
       <div className="hidden xl:block absolute left-8 top-36 bottom-24 w-[1px] bg-gradient-to-b from-transparent via-[#C79A52]/25 to-transparent" />
       <div className="hidden xl:block absolute right-8 top-36 bottom-24 w-[1px] bg-gradient-to-b from-transparent via-[#C79A52]/25 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      {/* ========================================================
+          MOBILE HERO CONTENT CONTAINER (<lg)
+          Clean 3-second comprehension:
+          FOTO -> ASSUNTO -> H1 -> COMPLEMENTO -> CTA ÚNICO
+         ======================================================== */}
+      <div className="lg:hidden relative z-10 w-full px-5 sm:px-6 pt-16 pb-4">
+        <div className="max-w-xl mx-auto flex flex-col justify-end text-left space-y-3.5 sm:space-y-4">
+          {/* 1. Pequeno Identificador */}
+          <div className="inline-flex items-center gap-2.5">
+            <span className="h-[1px] w-6 bg-[#C79A52]" />
+            <span className="font-cinzel text-[11px] sm:text-xs tracking-[0.24em] text-[#C79A52] font-semibold uppercase">
+              FGA ADVOCACIA
+            </span>
+          </div>
+
+          {/* 2. H1 Principal e Dominante */}
+          <h1
+            id="hero-headline-mobile"
+            className="font-serif text-[30px] min-[390px]:text-[36px] sm:text-[42px] text-[#F5F3EF] leading-[1.10] font-normal tracking-tight"
+          >
+            Teve seu benefício negado ou precisa garantir seus{' '}
+            <span className="italic font-medium text-[#D1A75B]">direitos</span>?
+          </h1>
+
+          {/* 3. Pequeno Complemento Curto */}
+          <p className="text-sm sm:text-base text-[#BAC7D5] font-light leading-snug max-w-md pt-0.5">
+            Defesa jurídica estratégica em aposentadorias, benefícios do INSS e causas de servidores públicos.
+          </p>
+
+          {/* 4. Ações Principais (WhatsApp + Preencher Formulário) */}
+          <div className="pt-2 w-full space-y-2.5">
+            <a
+              id="hero-mobile-whatsapp-cta"
+              href={WHATSAPP_DEFAULT_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full h-[50px] sm:h-[54px] inline-flex items-center justify-center gap-2.5 px-6 rounded-sm bg-gradient-to-r from-[#C79A52] via-[#D1A75B] to-[#B98A43] text-[#061321] text-xs sm:text-sm uppercase tracking-[0.16em] font-bold shadow-xl shadow-black/40 transition-all active:scale-[0.99]"
+            >
+              <MessageSquare className="w-4 h-4 text-[#061321] shrink-0" />
+              <span>FALAR COM UM ADVOGADO</span>
+            </a>
+
+            <a
+              id="hero-mobile-form-cta"
+              href="#contato"
+              onClick={handleScrollToContact}
+              className="w-full h-[46px] sm:h-[50px] inline-flex items-center justify-center gap-2 px-5 rounded-sm border border-[#C79A52]/50 text-[#F5F3EF] text-xs uppercase tracking-[0.14em] font-medium bg-[#0B1D30]/80 backdrop-blur-sm transition-all active:scale-[0.99]"
+            >
+              <FileText className="w-3.5 h-3.5 text-[#C79A52] shrink-0" />
+              <span>PREENCHER FORMULÁRIO DO CASO</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* ========================================================
+          DESKTOP HERO COMPOSITION (>=lg)
+          100% Intact with two columns, badges, buttons & details
+         ======================================================== */}
+      <div className="hidden lg:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Core Message & CTAs */}
-          <div className="lg:col-span-7 flex flex-col justify-center text-left space-y-6 lg:space-y-8">
+          <div className="lg:col-span-7 flex flex-col justify-center text-left space-y-5 lg:space-y-6">
             {/* Top Label */}
-            <div className="inline-flex items-center gap-3">
-              <span className="h-[1px] w-8 bg-[#C79A52]" />
-              <span className="font-cinzel text-xs sm:text-sm tracking-[0.28em] text-[#C79A52] font-semibold uppercase">
+            <div className="inline-flex items-center gap-2.5">
+              <span className="h-[1px] w-7 bg-[#C79A52]" />
+              <span className="font-cinzel text-xs tracking-[0.24em] text-[#C79A52] font-semibold uppercase">
                 FGA ADVOCACIA
               </span>
               <span className="hidden sm:inline-block text-[#8E9CAE]/60 text-xs">•</span>
@@ -40,43 +127,38 @@ export const Hero: React.FC = () => {
             {/* Main Headline */}
             <h1
               id="hero-headline"
-              className="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#F5F3EF] leading-[1.14] font-normal tracking-tight"
+              className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#F5F3EF] leading-[1.14] font-normal tracking-tight"
             >
-              Segurança jurídica para proteger seus{' '}
-              <span className="italic font-medium text-[#D1A75B]">direitos</span> e seu{' '}
-              <span className="italic font-medium text-[#D1A75B]">futuro</span>.
+              Teve seu benefício negado ou precisa garantir seus{' '}
+              <span className="italic font-medium text-[#D1A75B]">direitos</span>?
             </h1>
 
             {/* Complementary Text */}
-            <p className="text-base sm:text-lg text-[#BAC7D5] font-light leading-relaxed max-w-2xl">
-              Atuação em Direito Previdenciário e demandas relacionadas a servidores públicos, com
-              atendimento individualizado, responsabilidade e compromisso em cada caso.
+            <p className="text-base text-[#BAC7D5] font-light leading-relaxed max-w-2xl">
+              Atuação jurídica estratégica em aposentadorias, benefícios previdenciários do INSS e causas funcionais de servidores públicos. Análise técnica individualizada para identificar o melhor caminho para o seu caso.
             </p>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-1">
               <a
                 id="hero-whatsapp-cta"
                 href={WHATSAPP_DEFAULT_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-sm bg-gradient-to-r from-[#C79A52] via-[#D1A75B] to-[#B98A43] text-[#061321] text-sm uppercase tracking-[0.15em] font-bold shadow-xl shadow-[#C79A52]/15 transition-all duration-300 hover:brightness-110 hover:scale-[1.01] active:scale-[0.99] group"
+                className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-sm bg-gradient-to-r from-[#C79A52] via-[#D1A75B] to-[#B98A43] text-[#061321] text-xs uppercase tracking-[0.14em] font-bold shadow-lg shadow-[#C79A52]/15 transition-all duration-300 hover:brightness-110 active:scale-[0.99] group"
               >
                 <MessageSquare className="w-4 h-4 text-[#061321]" />
                 <span>Falar pelo WhatsApp</span>
               </a>
 
               <a
-                id="hero-explore-areas-btn"
-                href="#areas"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('#areas');
-                }}
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-sm border border-[#C79A52]/50 text-[#F5F3EF] text-sm uppercase tracking-[0.15em] font-medium bg-[#0B1D30]/40 backdrop-blur-sm transition-all duration-300 hover:border-[#C79A52] hover:bg-[#0B1D30] hover:text-[#D1A75B]"
+                id="hero-desktop-form-cta"
+                href="#contato"
+                onClick={handleScrollToContact}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-sm border border-[#C79A52]/60 text-[#F5F3EF] text-xs uppercase tracking-[0.14em] font-medium bg-[#0B1D30]/60 backdrop-blur-sm transition-all duration-300 hover:border-[#C79A52] hover:bg-[#0B1D30] hover:text-[#D1A75B]"
               >
-                <span>Conheça nossa atuação</span>
-                <ArrowRight className="w-4 h-4 text-[#C79A52]" />
+                <FileText className="w-3.5 h-3.5 text-[#C79A52]" />
+                <span>Preencher Formulário</span>
               </a>
             </div>
 
@@ -111,7 +193,7 @@ export const Hero: React.FC = () => {
                 <img
                   src={lawyerPortrait}
                   alt="Dr. Frederico Gomes Assunção — FGA Advocacia"
-                  className="w-full h-auto object-cover object-top max-h-[580px] lg:max-h-[640px] transition-transform duration-700 group-hover:scale-[1.02]"
+                  className="w-full h-auto object-cover object-top max-h-[460px] lg:max-h-[500px] xl:max-h-[540px] transition-transform duration-700 group-hover:scale-[1.02]"
                   loading="eager"
                   referrerPolicy="no-referrer"
                 />

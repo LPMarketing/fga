@@ -92,18 +92,25 @@ export const PublicoLandingPage: React.FC = () => {
       {/* SEÇÃO 01 — HERO */}
       <LandingHero
         badge="FGA ADVOCACIA • SERVIDOR PÚBLICO"
-        titlePrefix="Orientação jurídica para proteger os"
-        titleHighlight="direitos do servidor público."
-        description="Atuação em questões administrativas e funcionais relacionadas ao serviço público, com análise jurídica individualizada e acompanhamento próximo de cada situação."
+        titlePrefix="Sofreu desconto indevido, PAD ou prejuízo na sua"
+        titleHighlight="carreira pública?"
+        titleSuffix=""
+        description="Defesa jurídica especializada em processos disciplinares, progressões funcionais, licenças e direitos remuneratórios e previdenciários de servidores municipais, estaduais e federais."
         primaryCtaText="Falar com um advogado"
         primaryCtaLink={whatsappHeroUrl}
+        formCtaText="Preencher Formulário"
+        formCtaTarget="#contato-servidor"
         secondaryCtaText="Conheça nossa atuação"
         secondaryCtaTarget="#areas-de-atuacao"
         differentials={[
-          'Análise individualizada',
-          'Atendimento profissional',
-          'Orientação transparente',
+          'Defesa em PAD e sindicâncias',
+          'Direitos remuneratórios e funcionais',
+          'Orientação técnica individualizada',
         ]}
+        mobileBadge="DIREITO DO SERVIDOR PÚBLICO"
+        mobileHeadline="Servidor público: sofreu prejuízo na carreira ou processo funcional?"
+        mobileHighlight="prejuízo na carreira"
+        mobileSubtext="Defesa estratégica em processos disciplinares, remunerações e direitos funcionais."
       />
 
       {/* SEÇÃO 02 — ÁREAS DE ATUAÇÃO (Fundo Off-white) */}

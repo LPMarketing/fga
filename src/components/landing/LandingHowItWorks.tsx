@@ -20,13 +20,13 @@ export const LandingHowItWorks: React.FC<LandingHowItWorksProps> = ({
   steps,
 }) => {
   return (
-    <section id={id} className="py-20 lg:py-28 bg-[#061321] text-[#F5F3EF] relative overflow-hidden">
+    <section id={id} className="py-10 sm:py-14 lg:py-18 bg-[#061321] text-[#F5F3EF] relative overflow-hidden">
       {/* Subtle ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#102842]/20 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-3">
             <span className="h-[1px] w-6 bg-[#C79A52]" />
             <span className="font-cinzel text-xs tracking-[0.24em] text-[#C79A52] font-semibold uppercase">

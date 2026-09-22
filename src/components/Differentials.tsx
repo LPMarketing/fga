@@ -19,10 +19,10 @@ export const Differentials: React.FC = () => {
   };
 
   return (
-    <section className="py-24 lg:py-32 bg-[#061321] text-[#F5F3EF] relative overflow-hidden">
+    <section className="py-12 sm:py-16 lg:py-20 bg-[#061321] text-[#F5F3EF] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 sm:mb-20">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-3">
             <span className="h-[1px] w-6 bg-[#C79A52]" />
             <span className="font-cinzel text-xs tracking-[0.24em] text-[#C79A52] font-semibold uppercase">
@@ -39,22 +39,22 @@ export const Differentials: React.FC = () => {
         </div>
 
         {/* 4 Differentials Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {DIFFERENTIALS.map((item) => (
             <div
               key={item.title}
-              className="p-7 sm:p-8 rounded-sm bg-[#081828] border border-[#102842] hover:border-[#C79A52]/50 transition-all duration-300 flex flex-col justify-between group shadow-lg shadow-black/40 hover:-translate-y-1"
+              className="p-5 sm:p-6 rounded-sm bg-[#081828] border border-[#102842] hover:border-[#C79A52]/50 transition-all duration-300 flex flex-col justify-between group shadow-lg shadow-black/40 hover:-translate-y-1"
             >
               <div>
-                <div className="w-14 h-14 rounded-sm bg-[#061321] border border-[#183759] flex items-center justify-center mb-6 group-hover:border-[#C79A52]/60 group-hover:bg-[#0B1D30] transition-colors shadow-inner">
+                <div className="w-12 h-12 rounded-sm bg-[#061321] border border-[#183759] flex items-center justify-center mb-4 group-hover:border-[#C79A52]/60 group-hover:bg-[#0B1D30] transition-colors shadow-inner">
                   {getIcon(item.iconName)}
                 </div>
 
-                <h3 className="font-serif text-xl font-medium text-[#F5F3EF] group-hover:text-[#D1A75B] transition-colors mb-3">
+                <h3 className="font-serif text-lg font-medium text-[#F5F3EF] group-hover:text-[#D1A75B] transition-colors mb-2">
                   {item.title}
                 </h3>
 
-                <p className="text-sm text-[#BAC7D5] font-light leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#BAC7D5] font-light leading-relaxed">
                   {item.description}
                 </p>
               </div>

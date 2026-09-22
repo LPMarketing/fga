@@ -7,7 +7,7 @@ export const AboutLawyer: React.FC = () => {
   return (
     <section
       id="sobre"
-      className="py-24 lg:py-32 bg-[#081828] text-[#F5F3EF] relative overflow-hidden"
+      className="py-10 sm:py-14 lg:py-18 bg-[#081828] text-[#F5F3EF] relative overflow-hidden"
     >
       {/* Background ambient accents */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#102842]/30 rounded-full blur-3xl pointer-events-none" />

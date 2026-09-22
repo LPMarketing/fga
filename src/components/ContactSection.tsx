@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { WHATSAPP_BASE_URL } from '../data/content';
 import { Send, ShieldCheck, Lock } from 'lucide-react';
+import { consumePendingLeadOrigin, markAsConverted } from '../utils/qualificationStorage';
 
 interface FormData {
   nome: string;
@@ -19,6 +20,22 @@ export const ContactSection: React.FC = () => {
     mensagem: '',
   });
 
+  useEffect(() => {
+    // Check if user came from qualification popup or specific lead origin
+    const pendingOrigin = consumePendingLeadOrigin();
+    if (pendingOrigin === 'previdenciario') {
+      setFormData((prev) => ({
+        ...prev,
+        assunto: 'Direito Previdenciário — Aposentadoria',
+      }));
+    } else if (pendingOrigin === 'servidor') {
+      setFormData((prev) => ({
+        ...prev,
+        assunto: 'Servidor Público — Direitos Funcionais / PAD',
+      }));
+    }
+  }, []);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
@@ -28,6 +45,9 @@ export const ContactSection: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Mark user as converted in localStorage to prevent future popups
+    markAsConverted();
 
     const formattedMessage = `*Apresentação de Caso — FGA Advocacia*
 - Nome: ${formData.nome}
@@ -41,14 +61,14 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contato" data-section="apresente-seu-caso" className="py-24 lg:py-32 bg-[#061321] text-[#F5F3EF] relative overflow-hidden">
+    <section id="contato" data-section="apresente-seu-caso" className="py-10 sm:py-14 lg:py-18 bg-[#061321] text-[#F5F3EF] relative overflow-hidden">
       <div id="apresente-seu-caso" className="sr-only" aria-hidden="true" />
       {/* Subtle ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#102842]/25 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-4 mb-12 sm:mb-16">
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-3">
             <span className="h-[1px] w-6 bg-[#C79A52]" />
             <span className="font-cinzel text-xs tracking-[0.24em] text-[#C79A52] font-semibold uppercase">

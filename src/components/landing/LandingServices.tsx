@@ -34,13 +34,13 @@ export const LandingServices: React.FC<LandingServicesProps> = ({
   };
 
   return (
-    <section id={id} className="py-20 lg:py-28 bg-[#F5F3EF] text-[#061321] relative overflow-hidden">
+    <section id={id} className="py-10 sm:py-14 lg:py-18 bg-[#F5F3EF] text-[#061321] relative overflow-hidden">
       {/* Subtle top separator */}
       <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#C79A52] to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-3">
             <span className="h-[1px] w-6 bg-[#C79A52]" />
             <span className="font-cinzel text-xs tracking-[0.24em] text-[#966F33] font-bold uppercase">
